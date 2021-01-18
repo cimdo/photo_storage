@@ -6,6 +6,7 @@ export default function Home() {
   return (
     <Layout home>
       <Head>
+        {/* only show up in browser tab */}
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
