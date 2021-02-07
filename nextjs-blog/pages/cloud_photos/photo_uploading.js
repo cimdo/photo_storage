@@ -4,11 +4,8 @@ import Head from 'next/head';
 // import Layout from '../../components/layout'
 import {DropzoneDialog} from 'material-ui-dropzone';
 import Button from '@material-ui/core/Button';
-
-
 import {useState} from 'react';
-
-
+import axios from 'axios';
 
 export default function photo_uploading() {
   const [files, setFiles] = useState(0);
@@ -20,6 +17,15 @@ export default function photo_uploading() {
 
   function handleSave(file) {
     //Saving files to state for further use and closing Modal.
+    //let form_data = new FormData();
+    //form_data.append('image');
+    axios.post('http://localhost:8000/uploadImages',file)
+    .then(res => {
+          console.log("dfdfdf");
+          console.log("ddfdf" + res.data);
+        })
+    .catch(err => console.log(err))
+    
     setFiles(file);
     setOpen(false);
   }
@@ -27,7 +33,7 @@ export default function photo_uploading() {
   function handleClose() {
     setOpen(false);
   }
-    return (
+  return (
       <>
       <Head>
         <title>Uploading photos</title>
